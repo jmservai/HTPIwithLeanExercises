@@ -7,6 +7,7 @@ theorem Exercise_3_2_1a (P Q R : Prop)
     (h1 : P → Q) (h2 : Q → R) : P → R := by
 
   done
+  done
 
 -- 2.
 theorem Exercise_3_2_1b (P Q R : Prop)
