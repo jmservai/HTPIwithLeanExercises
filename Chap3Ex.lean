@@ -8,6 +8,9 @@ theorem Exercise_3_2_1a (P Q R : Prop)
 
   done
   done
+  done
+
+  
 
 -- 2.
 theorem Exercise_3_2_1b (P Q R : Prop)
