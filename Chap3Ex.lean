@@ -21,6 +21,10 @@ theorem easy (P Q R : Prop) (h1 : P → Q)
 
 theorem two_imp (P Q R : Prop)
     (h1 : P → Q) (h2 : Q → ¬R) : R → ¬P := by
+  contrapos  --Goal is now P → ¬R
+  assume h3 : P
+  show ¬R from h2 (h1 h3)
+  done
 
 
 
