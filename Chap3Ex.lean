@@ -1,16 +1,41 @@
 import HTPILib.Chap3
 namespace HTPI.Exercises
 
+theorem Example_3_2_4
+    (P Q R : Prop) (h : P → (Q → R)) : ¬R → (P → ¬Q) := by
+  assume h2 : ¬R
+  assume h3 : P
+  have   h4 : Q → R := h h3
+  contrapos at h4
+  show ¬Q from h4 h2
+  done
+
+
+theorem extremely_easy (P : Prop) (h : P) : P := h
+
+theorem very_easy
+    (P Q : Prop) (h1 : P → Q) (h2 : P) : Q := h1 h2
+
+theorem easy (P Q R : Prop) (h1 : P → Q)
+    (h2 : Q → R) (h3 : P) : R := h2 (h1 h3)
+
+theorem two_imp (P Q R : Prop)
+    (h1 : P → Q) (h2 : Q → ¬R) : R → ¬P := by
+
+
+
+
+
+
 /- Sections 3.1 and 3.2 -/
 -- 1.
 theorem Exercise_3_2_1a (P Q R : Prop)
     (h1 : P → Q) (h2 : Q → R) : P → R := by
 
   done
-  done
-  done
 
-  
+
+
 
 -- 2.
 theorem Exercise_3_2_1b (P Q R : Prop)
