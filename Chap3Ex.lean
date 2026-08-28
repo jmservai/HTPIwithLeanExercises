@@ -52,7 +52,7 @@ theorem Example_3_2_4_v2
   have h5 : Q → R := h h3
   contrapos at h5
   have h6 : ¬Q := h5 h2
-  show False from h6 h4
+  show False from absurd h4 h6
   done
 
 
