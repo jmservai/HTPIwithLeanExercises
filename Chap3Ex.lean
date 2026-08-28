@@ -23,8 +23,28 @@ theorem two_imp (P Q R : Prop)
     (h1 : P → Q) (h2 : Q → ¬R) : R → ¬P := by
   contrapos  --Goal is now P → ¬R
   assume h3 : P
-  show ¬R from h2 (h1 h3)
+  have   h4 : Q := h1 h3
+  show ¬R from h2 h4
   done
+
+theorem Example_3_2_5_simple
+    (B C : Set ℕ) ( a : ℕ)
+    (h1 : a ∈ B) (h2 : a ∉ B \ C) : a ∈ C := by
+  define at h2
+  demorgan at h2
+  conditional at h2
+  show a ∈ C from h2 h1
+  done
+
+theorem Example_3_2_5_simple_general
+    (U : Type) (B C : Set U) (a : U)
+    (h1 : a ∈ B) (h2 : a ∉ B \ C) : a ∈ C := by
+  define at h2 -- now h2 is ¬(a ∈ B ∧ a ∉ C)
+  demorgan at h2; conditional at h2 -- now h2 is a ∈ B → a ∈ C
+  show a ∈ C from h2 h1
+  done
+
+
 
 
 
