@@ -44,6 +44,18 @@ theorem Example_3_2_5_simple_general
   show a ∈ C from h2 h1
   done
 
+theorem Example_3_2_4_v2
+    (P Q R : Prop) (h : P → (Q → R)) : ¬R → (P → ¬Q) := by
+  assume h2 : ¬R
+  assume h3 : P
+  by_contra h4
+  have h5 : Q → R := h h3
+  contrapos at h5
+  have h6 : ¬Q := h5 h2
+  show False from h6 h4
+  done
+
+
 
 
 
