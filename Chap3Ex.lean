@@ -50,12 +50,31 @@ theorem Example_3_2_4_v2
   assume h3 : P
   by_contra h4
   have h5 : Q → R := h h3
-  contrapos at h5
-  have h6 : ¬Q := h5 h2
-  show False from absurd h4 h6
+  have h6 : R := h5 h4
+  --show False from absurd h6 h2
+  show False from h2 h6
   done
 
+theorem Example_3_2_4_v3
+    (P Q R : Prop) (h : P → (Q → R)) : ¬R → (P → ¬Q) := by
+  assume h2 : ¬R
+  assume h3 : P
+  --by_contra h4
+  --contradict h2
+  contradict h2 with h4 --does the same as above 2 lines
+  show R from h h3 h4
+  done
 
+theorem Like_Example_3_2_5
+    (U : Type) (A B C : Set U) (a : U)
+    (h1 : a ∈ A) (h2 : a ∉ A \ B)
+    (h3 : a ∈ B → a ∈ C) : a ∈ C := by
+  apply h3 _
+  define at h2
+  demorgan at h2; conditional at h2
+  apply h2 _
+  show a ∈ A from h1
+  done
 
 
 
