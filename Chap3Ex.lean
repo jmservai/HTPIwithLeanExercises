@@ -77,37 +77,41 @@ theorem Like_Example_3_2_5
   done
 
 
-
-
-
-
-
 /- Sections 3.1 and 3.2 -/
 -- 1.
 theorem Exercise_3_2_1a (P Q R : Prop)
     (h1 : P → Q) (h2 : Q → R) : P → R := by
-
+  assume h3
+  apply h2 _
+  apply h1 _
+  show P from h3
   done
-
-
 
 
 -- 2.
 theorem Exercise_3_2_1b (P Q R : Prop)
     (h1 : ¬R → (P → ¬Q)) : P → (Q → R) := by
-
+  assume h2
+  contrapos
+  assume h3
+  show ¬Q from h1 h3 h2
   done
 
 -- 3.
 theorem Exercise_3_2_2a (P Q R : Prop)
     (h1 : P → Q) (h2 : R → ¬Q) : P → ¬R := by
-
+  assume h3
+  contrapos at h2
+  show ¬R from h2 (h1 h3)
   done
 
 -- 4.
 theorem Exercise_3_2_2b (P Q : Prop)
     (h1 : P) : Q → ¬(Q → ¬P) := by
-
+  assume h2
+  by_contra h3
+  contradict h1
+  show ¬P from h3 h2
   done
 
 /- Section 3.3 -/
