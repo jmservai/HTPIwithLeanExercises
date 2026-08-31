@@ -142,7 +142,14 @@ example (U : Type) (P Q : Pred U)
     (h1 : ∀ (x : U), ∃ (y : U), P x → ¬Q y)
     (h2 : ∃ (x : U), ∀ (y : U), P x → Q y) :
     ∃ (x : U), ¬P x := by
-
+  obtain (a : U)
+    (h3 : ∀ (y : U), P a → Q y) from h2
+  have h4 : ∃ (y : U), P a → ¬Q y := h1 a
+  obtain (b : U) (h5 : P a → ¬Q b) from h4
+  have h6 : P a → Q b := h3 b
+  apply Exists.intro a _
+  by_contra h7
+  show False from h5 h7 (h6 h7)
   done
 
 /- Section 3.3 -/
@@ -150,7 +157,11 @@ example (U : Type) (P Q : Pred U)
 theorem Exercise_3_3_1
     (U : Type) (P Q : Pred U) (h1 : ∃ (x : U), P x → Q x) :
     (∀ (x : U), P x) → ∃ (x : U), Q x := by
-
+  obtain (a : U) (h2 : P a → Q a) from h1
+  assume h3
+  have h4 : P a := h3 _
+  apply Exists.intro a _
+  show Q a from h2 h4
   done
 
 -- 2.
