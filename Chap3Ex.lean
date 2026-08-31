@@ -114,6 +114,24 @@ theorem Exercise_3_2_2b (P Q : Prop)
   show ¬P from h3 h2
   done
 
+example (U : Type) (P Q : Pred U)
+    (h1 : ∀ (x : U), P x → ¬Q x)
+    (h2 : ∀ (x : U), Q x) : ¬∃ (x : U), P x := by
+  quant_neg
+  fix y : U
+  have h3 : P y → ¬Q y := h1 y
+  have h4 : Q y := h2 y
+  contrapos at h3
+  show ¬P y from h3 h4
+  done
+
+example (U : Type) (A B C : Set U) (h1 : A ⊆ B ∪ C)
+    (h2 : ∀ (x : U), x ∈ A → x ∉ B) : A ⊆ C := by
+  define
+
+
+
+  done
 /- Section 3.3 -/
 -- 1.
 theorem Exercise_3_3_1
