@@ -128,10 +128,23 @@ example (U : Type) (P Q : Pred U)
 example (U : Type) (A B C : Set U) (h1 : A ⊆ B ∪ C)
     (h2 : ∀ (x : U), x ∈ A → x ∉ B) : A ⊆ C := by
   define
+  fix y : U
+  assume h3
+  have h4 : y ∉ B := h2 _ h3
+  define at h1
+  have h5 : y ∈ B ∪ C := h1 h3
+  define at h5
+  conditional at h5
+  show y ∈ C from h5 h4
+  done
 
-
+example (U : Type) (P Q : Pred U)
+    (h1 : ∀ (x : U), ∃ (y : U), P x → ¬Q y)
+    (h2 : ∃ (x : U), ∀ (y : U), P x → Q y) :
+    ∃ (x : U), ¬P x := by
 
   done
+
 /- Section 3.3 -/
 -- 1.
 theorem Exercise_3_3_1
